@@ -1,24 +1,23 @@
 import { useRef } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import '../Styles/main.css';
-import logo from '../assets/bpa.png';
+import styles from './Navbar.module.css'; // Change the import statement
+import logo from '../../assets/bpa.png';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
-    
   const navRef = useRef();
 
   const showNavbar = () => {
-    navRef.current.classList.toggle('responsive_nav');
+    navRef.current.classList.toggle(styles.responsive_nav); // Update the class name
   };
 
   const closeNavbar = () => {
-    navRef.current.classList.remove('responsive_nav');
+    navRef.current.classList.remove(styles.responsive_nav); // Update the class name
   };
 
   return (
     <header>
-      <img className="logo" src={logo} alt="Logo" />
+      <img className={styles.logo} src={logo} alt="Logo" />
       <nav ref={navRef}>
         <b>
           <Link to="/home" onClick={closeNavbar}>
@@ -40,11 +39,14 @@ function Navbar() {
             Blog
           </Link>
         </b>
-        <button className="nav-btn nav-close-btn" onClick={showNavbar}>
+        <button
+          className={`${styles['nav-btn']} ${styles['nav-close-btn']}`}
+          onClick={showNavbar}
+        >
           <FaTimes />
         </button>
       </nav>
-      <button className="nav-btn" onClick={showNavbar}>
+      <button className={styles['nav-btn']} onClick={showNavbar}>
         <FaBars />
       </button>
     </header>
